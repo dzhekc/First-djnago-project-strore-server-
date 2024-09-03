@@ -10,6 +10,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 
 
+
 from user.common import TitleMixin
 from user.models import User
 from user.forms import UserLoginForm,UserRegistrationForm,UserProfileForm
@@ -125,3 +126,7 @@ class EmailVerificationView(TitleMixin, TemplateView):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+
+class PasswordResetView(TemplateView):
+    template_name = 'users/password_res.html'

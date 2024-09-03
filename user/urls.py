@@ -19,7 +19,7 @@ from django.conf import settings
 
 from user.views import login,registration,logout,UserRegestrationView,UserLoginView, EmailVerificationView
 
-from user.views import UserProfileView
+from user.views import UserProfileView,PasswordResetView
 
 
 
@@ -31,6 +31,7 @@ urlpatterns = [
     path('profile/<int:pk>',UserProfileView.as_view(), name='profile'),
     path('logout/',logout,name='logout'),
     path('verify/<str:email>/<uuid:code>/',EmailVerificationView.as_view(),name='email_verify'),
+    path('passsword_reset/',PasswordResetView.as_view(),name='password_reset'),
 ]
 
 
