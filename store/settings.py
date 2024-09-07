@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from pathlib import Path
 
+import keys
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -173,15 +175,15 @@ DOMAIN_NAME = 'http://127.0.0.1:8000'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'zhenia.lozyuck@yandex.ru'
-EMAIL_HOST_PASSWORD = 'vxakmprdumjwgioe'
+EMAIL_HOST_USER = keys.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = keys.EMAIL_HOST_PASSWORD
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.'
 
 
 
@@ -224,7 +226,7 @@ CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
 
 #Stripe
 
-STRIPE_PUBLIC_KEY = 'pk_test_51PtEdO2LoJl8DX8Ky4AdAWsKspgX8E4ibZu8QKycUCQ0VXIuAJYLP3C35FRcWrfhhYn6YWD5oi81MkhribotwIIP00YbAwD52h'
-STRIPE_SECRET_KEY = 'sk_test_51PtEdO2LoJl8DX8KwFPYlU51qyyl8G9oVuytlpN18rKPOoAFmVpC4KSSs1ihFYcGaf6EV6mI2i8H8b0n6L4EBlL900GDnvlr1E'
-STRIPE_WEBHOOK_KEY = 'whsec_048553881d5c7a095bf030baf2a235c4e2ec3f51905a9b473830aa156eaf237b'
+STRIPE_PUBLIC_KEY = keys.STRIPE_PUBLIC_KEY
+STRIPE_SECRET_KEY = keys.STRIPE_WEBHOOK_KEY
+STRIPE_WEBHOOK_KEY = keys.STRIPE_WEBHOOK_KEY
 
