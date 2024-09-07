@@ -3,18 +3,16 @@ from django.contrib import auth,messages
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView
-from django.contrib.auth.views import LoginView
+from django.views.generic.edit import CreateView, FormView
+from django.contrib.auth.views import LoginView, PasswordResetView,PasswordResetConfirmView,PasswordResetCompleteView
 from django.views.generic.edit import UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
-
-
-
 
 from user.common import TitleMixin
 from user.models import User
 from user.forms import UserLoginForm,UserRegistrationForm,UserProfileForm
 from products.models import Basket
+from user.forms import UserResetPasswordForm
 
 from user.models import EmailVerification
 
@@ -128,5 +126,19 @@ def logout(request):
     return HttpResponseRedirect(reverse('index'))
 
 
-class PasswordResetView(TemplateView):
+class PasswordResetEmailView(PasswordResetView):
+    form_class = UserResetPasswordForm
     template_name = 'users/password_res.html'
+    email_template_name = 'users/password_reset_email.html'
+    subject_template_name = 'registration/password_reset_subject.txt'
+    success_url = reverse_lazy('index')
+
+class PasswordResetEmailConfirm(PasswordResetConfirmView):
+    template_name = 'users/password_confirm.html'
+    success_url = reverse_lazy('users:password_complete')
+
+class PasswordComplete(PasswordResetCompleteView):
+    template_name = 'users/password_reset_confirm.html'
+
+
+# class PasswordResetConfirmView(SuccessMessageMixin, FormView):

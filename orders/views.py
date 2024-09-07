@@ -103,7 +103,7 @@ def fulfill_checkout(session_id):
 
 
 @csrf_exempt
-def stripe_webhook_view(request):
+def str_webhook_view(request):
     payload = request.body
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None

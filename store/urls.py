@@ -24,7 +24,7 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 
 from products.views import products, IndexView, ProductsListView
 
-from orders.views import stripe_webhook_view
+from orders.views import str_webhook_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,7 +33,7 @@ urlpatterns = [
     path('user/', include('user.urls', namespace='user')),
     path('accounts/', include('allauth.urls')),
     path('order/', include('orders.urls', namespace='orders')),
-    path('stripe/', stripe_webhook_view, name='webhook'),
+    path('stripe/', str_webhook_view, name='webhook'),
 ]
 
 if settings.DEBUG:

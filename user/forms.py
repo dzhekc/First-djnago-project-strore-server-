@@ -1,7 +1,7 @@
 import uuid
 from datetime import timedelta
 
-from django.contrib.auth.forms import AuthenticationForm,UserCreationForm,UserChangeForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm, PasswordResetForm
 from django import forms
 from user.models import User,EmailVerification
 from django.utils.timezone import now
@@ -81,6 +81,7 @@ class UserProfileForm(UserChangeForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4',
         'readonly':True,
+
     }))
     email = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4',
@@ -90,4 +91,18 @@ class UserProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = {'first_name', 'last_name','username','email','image'}
+
+
+class UserResetPasswordForm(PasswordResetForm):
+
+    email = forms.EmailField(widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Введите адрес электронной почты',
+        'name':'email',
+        'type':'email',
+    }))
+
+    class Meta:
+        model = User
+        fields = ['email']
 

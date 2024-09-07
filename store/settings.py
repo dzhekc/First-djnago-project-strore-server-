@@ -170,15 +170,18 @@ DOMAIN_NAME = 'http://127.0.0.1:8000'
 
 #sending emails
 
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'zhenia.lozyuck@yandex.ru'
+EMAIL_HOST_PASSWORD = 'vxakmprdumjwgioe'
 
-#
-# EMAIL_HOST = 'smtp.yandex.ru'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'zhenia.lozyuck@yandex.ru'
-# EMAIL_HOST_PASSWORD = 'az321456789.'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 
